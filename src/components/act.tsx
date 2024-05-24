@@ -112,7 +112,7 @@ function Act(props: ActProps) {
   };
 
   const handleDeleteAct = useCallback(
-    (actId: string, beatId: string) => {
+    (actId: string) => {
       return () => {
         dispatch({
           type: "DELETE_ACT",

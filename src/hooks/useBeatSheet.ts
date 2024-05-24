@@ -24,7 +24,7 @@ function beatSheetDispatchReducer(beatsheet: BeatSheetProps, action: any) {
         if (act.id === action.payload.actId) {
           return {
             ...act,
-            description: action.payload.description,
+            ...action.payload.act,
           };
         }
         return act;
