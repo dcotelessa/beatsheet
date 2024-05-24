@@ -1,40 +1,40 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Beat Sheet
 
-## Getting Started
+This is a small app that allows users to input and modify a beat sheet.
 
-First, run the development server:
+## What's a Beat Sheet?
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+A beat sheet, originally a concept from screenwriting, is a kind of outline used to plan the content and structure o a piece of media.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+For YouTube influencers, a beat sheet could be a way to plan out the content of a video or series of videos.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+> Here's a simple example of what a beat sheet might look like for a YouTube video:
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+> - Intro (0:00-0:15): Brief introduction of the host (the influencer) and the topic of the video.
+> - Title/Opening Credits (0:15-0:30): The opening title or credits for the video.
+> - Hook (0:30-1:00): A hook to draw viewers in and get them interested in the rest of the video.
+> - Overview (1:00-1:30): A more detailed overview of what will be covered in the video.
+> - Main Content - Part 1 (1:30-5:00): The first part of the main content. This could be a tutorial, product review, story, etc.
+> - Transition (5:00-5:15): A brief transition between the first and second parts of the main content.
+> - Main Content - Part 2 (5:15-9:00): The second part of the main content.
+> - Conclusion (9:00-10:00): Wrapping up the video, summarizing the key points, and perhaps providing a tease of what's coming in the next video.
+> - Call to Action (10:00-10:30): Asking viewers to like, subscribe, comment, etc.
+> - End Credits/Outro (10:30-11:00): End credits, bloopers, or other outro material.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+## Features in the application:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- Lists all acts and all their subsequent beats
+- List the beats in a specific act
+- Create a new act
+- Delete an act (and all the subsequent beats associated with)
+- Create a beat in an act
+- Update a beat in an existing act
+- Remove a beat from the act
+- (Optional) Loads and export flat file of beat
+- (Optional) Resort beats within act
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## To run application:
+- (make sure to use npm of lts/hydrogen or higher - nvm use lts/hydrogen)
+- npm i
+- npm run dev, navigate to [localhost:3000](http://localhost:3000/)
+- .env.local sets the the database, export of database is at [localhost:3000/api/data](http://localhost:3000/api/data)
