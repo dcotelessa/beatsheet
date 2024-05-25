@@ -1,4 +1,5 @@
 // pages/api/update/[id].ts
+import { ObjectId } from 'mongodb';
 import type { NextApiRequest, NextApiResponse } from "next";
 import clientPromise from "@/lib/mongodb";
 
@@ -31,20 +32,26 @@ export default async function updateData(
     const db = client.db();
     const collection = db.collection(process.env.MONGODB_COLLECTION);
     if (method === "PUT") {
-      const data = await collection.findOneAndUpdate(
-        { _id: id },
+      let data = await collection.findOneAndUpdate(
+        { id },
         { $set: req.body },
         {
-          returnOriginal: false,
+          returnDocument: 'after',
         },
       );
-      res.status(200).json({ data });
+      if (!data) {
+        data = { _id: new ObjectId() };
+      }
+      res.status(200).json(data as any);
 
       return;
     }
     res.status(400).json({ error: "Nothing Found" });
   } catch (error) {
-    res.status(500).json({ error: error.toString() });
+    if (error instanceof Error) {
+      res.status(500).json({ error: error.toString() });
+    } else {
+      res.status(500).json({ error: 'An unknown error occurred' });
+    }
   }
 }
-

@@ -23,7 +23,7 @@ type updateDataInput = {
 
 export async function updateData(
   collectionName: string,
-  _id: string,
+  id: string,
   body: updateDataInput,
 ) {
   try {
