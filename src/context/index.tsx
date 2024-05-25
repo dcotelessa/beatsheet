@@ -1,5 +1,5 @@
 import { createContext, Dispatch } from "react";
-import { BeatSheetProps } from '@/components/BeatSheet';
+import { BeatSheetProps } from "@/components/beatsheet";
 
 type BeatSheetAction = {
   type: string;
@@ -9,4 +9,3 @@ type BeatSheetAction = {
 export const BeatSheetContext = createContext<BeatSheetProps | null>(null);
 export const BeatSheetDispatchContext =
   createContext<Dispatch<BeatSheetAction> | null>(null);
-

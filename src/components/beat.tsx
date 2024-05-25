@@ -50,19 +50,21 @@ function Beat(props: BeatProps) {
         const min = duration_min * 1000 * 60;
         const sec = duration_sec * 1000;
         const duration = min + sec;
-        dispatch({
-          type: "UPDATE_BEAT",
-          payload: {
-            actId,
-            beatId,
-            beat: {
-              description,
-              timestamp: new Date().getTime(),
-              duration,
-              cameraAngle,
+        if (dispatch) {
+          dispatch({
+            type: "UPDATE_BEAT",
+            payload: {
+              actId,
+              beatId,
+              beat: {
+                description,
+                timestamp: new Date().getTime(),
+                duration,
+                cameraAngle,
+              },
             },
-          },
-        });
+          });
+        }
         setIsOpen(false);
       };
     },
@@ -107,13 +109,15 @@ function Beat(props: BeatProps) {
 
   const handleRemoveBeat = useCallback(
     (actId: string, beatId: string) => () => {
-      dispatch({
-        type: "DELETE_BEAT",
-        payload: {
-          actId,
-          beatId,
-        },
-      });
+      if (dispatch) {
+        dispatch({
+          type: "DELETE_BEAT",
+          payload: {
+            actId,
+            beatId,
+          },
+        });
+      }
     },
     [dispatch],
   );
