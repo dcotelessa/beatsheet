@@ -23,14 +23,14 @@ import RectangleStackIcon from "@/images/rectangle-stack-icon";
 export interface BeatSheetItem {
   _id: string;
   id: string;
-  title: number;
+  title: string;
   acts: ActProps[];
 }
 
 export type BeatSheetProps = {
   _id: string;
   id: string;
-  title: number;
+  title: string;
   acts: ActProps[];
 };
 
@@ -55,23 +55,26 @@ function BeatSheet() {
   }, [acts, _id, beatSheet]);
 
   const handleAddAct = useCallback(() => {
-    dispatch({
-      type: "ADD_ACT",
-      payload: {
-        act: {
-          id: uuidv4(),
-          description: newDescription,
-          timestamp: new Date().getTime(),
-          beats: [],
+    if (dispatch) {
+      dispatch({
+        type: "ADD_ACT",
+        payload: {
+          act: {
+            id: uuidv4(),
+            description: newDescription,
+            timestamp: new Date().getTime(),
+            beats: [],
+          },
         },
-      },
-    });
+      });
+    }
 
     setIsOpen(false);
   }, [dispatch, newDescription]);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setNewDescription(event.target.value);
+    console.log(newDescription);
   };
 
   return (
@@ -107,13 +110,13 @@ function BeatSheet() {
             <DialogHeader>
               <DialogTitle>Add Act</DialogTitle>
               <DialogDescription>
-                Add title to your act. Click save when you&apos;re done.
+                Add title to your act. Click save when you're done.
               </DialogDescription>
             </DialogHeader>
             <div className="grid gap-4 py-4">
               <div className="grid grid-cols-4 items-center gap-4">
-                <Label htmlFor="description" className="text-right">
-                  Description
+                <Label htmlFor="name" className="text-right">
+                  Name
                 </Label>
                 <Input
                   id="description"

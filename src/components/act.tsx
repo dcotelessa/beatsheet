@@ -56,19 +56,21 @@ function Act(props: ActProps) {
         const min = duration_min * 1000 * 60;
         const sec = duration_sec * 1000;
         const duration = min + sec;
-        dispatch({
-          type: "ADD_BEAT",
-          payload: {
-            actId,
-            beat: {
-              id: uuidv4(),
-              description,
-              timestamp: new Date().getTime(),
-              duration,
-              cameraAngle,
+        if (dispatch) {
+          dispatch({
+            type: "ADD_BEAT",
+            payload: {
+              actId,
+              beat: {
+                id: uuidv4(),
+                description,
+                timestamp: new Date().getTime(),
+                duration,
+                cameraAngle,
+              },
             },
-          },
-        });
+          });
+        }
         setIsBeatOpen(false);
       };
     },
@@ -114,12 +116,14 @@ function Act(props: ActProps) {
   const handleDeleteAct = useCallback(
     (actId: string) => {
       return () => {
-        dispatch({
-          type: "DELETE_ACT",
-          payload: {
-            actId,
-          },
-        });
+        if (dispatch) {
+          dispatch({
+            type: "DELETE_ACT",
+            payload: {
+              actId,
+            },
+          });
+        }
       };
     },
     [dispatch],
@@ -128,16 +132,18 @@ function Act(props: ActProps) {
   const handleUpdateAct = useCallback(
     (actId: string) => {
       return () => {
-        dispatch({
-          type: "UPDATE_ACT_DESCRIPTION",
-          payload: {
-            actId,
-            act: {
-              description: newDescription,
-              timestamp: new Date().getTime(),
+        if (dispatch) {
+          dispatch({
+            type: "UPDATE_ACT_DESCRIPTION",
+            payload: {
+              actId,
+              act: {
+                description: newDescription,
+                timestamp: new Date().getTime(),
+              },
             },
-          },
-        });
+          });
+        }
 
         setIsOpen(false);
       };

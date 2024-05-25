@@ -1,8 +1,26 @@
 import { useReducer } from "react";
 import { BeatSheetProps } from "@/components/beatsheet";
 import { ActProps } from "@/components/act";
+import { BeatProps } from "@/components/beat";
 
-function beatSheetDispatchReducer(beatsheet: BeatSheetProps, action: any) {
+type Action =
+  | { type: "LOAD_BEATSHEET"; payload: { beatSheet: BeatSheetProps } }
+  | { type: "UPDATE_TITLE"; payload: { title: string } }
+  | { type: "ADD_ACT"; payload: { act: ActProps } }
+  | {
+      type: "UPDATE_ACT_DESCRIPTION";
+      payload: { actId: string; act: Partial<ActProps> };
+    }
+  | { type: "UPDATE_ACT"; payload: { actId: string; act: Partial<ActProps> } }
+  | { type: "DELETE_ACT"; payload: { actId: string } }
+  | { type: "ADD_BEAT"; payload: { actId: string; beat: BeatProps } }
+  | {
+      type: "UPDATE_BEAT";
+      payload: { actId: string; beatId: string; beat: Partial<BeatProps> };
+    }
+  | { type: "DELETE_BEAT"; payload: { actId: string; beatId: string } };
+
+function beatSheetDispatchReducer(beatsheet: BeatSheetProps, action: Action) {
   switch (action.type) {
     case "LOAD_BEATSHEET": {
       return action.payload.beatSheet;
@@ -111,13 +129,14 @@ function beatSheetDispatchReducer(beatsheet: BeatSheetProps, action: any) {
       };
     }
     default: {
-      throw Error("Unknown action: " + action.type);
+      throw Error("Unknown action: " + action);
     }
   }
 }
 
 export default function useBeatSheet() {
-  const initialBeatSheetData = {
+  const initialBeatSheetData: BeatSheetProps = {
+    _id: "",
     id: "",
     title: "",
     acts: [],
