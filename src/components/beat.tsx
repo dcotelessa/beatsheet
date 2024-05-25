@@ -141,7 +141,7 @@ function Beat(props: BeatProps) {
               <DialogTitle>Update Beat</DialogTitle>
               <DialogDescription>
                 Update description, duration and camera angle to your beat.
-                Click save when you're done.
+                Click save when you&apos;re done.
               </DialogDescription>
             </DialogHeader>
             <div className="grid gap-4 py-4">

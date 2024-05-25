@@ -181,7 +181,7 @@ function Act(props: ActProps) {
               <DialogHeader>
                 <DialogTitle>Add Act</DialogTitle>
                 <DialogDescription>
-                  Update title to your act. Click save when you're done.
+                  Update title to your act. Click save when you&apos;re done.
                 </DialogDescription>
               </DialogHeader>
               <div className="grid gap-4 py-4">
@@ -233,7 +233,7 @@ function Act(props: ActProps) {
                   <DialogTitle>Add Beat</DialogTitle>
                   <DialogDescription>
                     Add description, duration and camera angle to your beat.
-                    Click save when you're done.
+                    Click save when you&apos;re done.
                   </DialogDescription>
                 </DialogHeader>
                 <div className="grid gap-4 py-4">
