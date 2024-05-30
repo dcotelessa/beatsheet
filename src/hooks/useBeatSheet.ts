@@ -3,7 +3,7 @@ import { BeatSheetProps } from "@/components/beatsheet";
 import { ActProps } from "@/components/act";
 import { BeatProps } from "@/components/beat";
 
-type Action =
+export type BeatSheetAction =
   | { type: "LOAD_BEATSHEET"; payload: { beatSheet: BeatSheetProps } }
   | { type: "UPDATE_TITLE"; payload: { title: string } }
   | { type: "ADD_ACT"; payload: { act: ActProps } }
@@ -20,7 +20,7 @@ type Action =
     }
   | { type: "DELETE_BEAT"; payload: { actId: string; beatId: string } };
 
-function beatSheetDispatchReducer(beatsheet: BeatSheetProps, action: Action) {
+function beatSheetDispatchReducer(beatsheet: BeatSheetProps, action: BeatSheetAction) {
   switch (action.type) {
     case "LOAD_BEATSHEET": {
       return action.payload.beatSheet;

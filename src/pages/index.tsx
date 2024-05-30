@@ -1,8 +1,11 @@
-import { useContext, useEffect } from "react";
+import { Dispatch, useEffect } from "react";
 import { GetServerSideProps } from "next";
-import useBeatSheet from "@/hooks/useBeatSheet";
+import useBeatSheet, { BeatSheetAction } from "@/hooks/useBeatSheet";
 import { BeatSheetContext, BeatSheetDispatchContext } from "@/context/";
-import BeatSheet, { BeatSheetItem } from "@/components/beatsheet";
+import BeatSheet, {
+  BeatSheetProps,
+  BeatSheetItem,
+} from "@/components/beatsheet";
 import clientPromise from "../lib/mongodb";
 
 interface PageProps {
@@ -32,7 +35,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
   }
 };
 
-const HomePage = ({ data }) => {
+const HomePage = ({ data }: PageProps) => {
   const [beatSheet, beatsheetDispatch] = useBeatSheet();
 
   useEffect(() => {
@@ -41,10 +44,11 @@ const HomePage = ({ data }) => {
       payload: { beatSheet: data[0] },
     });
   }, [data, beatsheetDispatch]);
-
   return (
-    <BeatSheetContext.Provider value={beatSheet}>
-      <BeatSheetDispatchContext.Provider value={beatsheetDispatch}>
+    <BeatSheetContext.Provider value={beatSheet as BeatSheetProps | null}>
+      <BeatSheetDispatchContext.Provider
+        value={beatsheetDispatch as Dispatch<BeatSheetAction> | null}
+      >
         {beatSheet && <BeatSheet />}
       </BeatSheetDispatchContext.Provider>
     </BeatSheetContext.Provider>
